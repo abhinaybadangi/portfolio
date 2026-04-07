@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Data Analyst Portfolio</title>
+  <meta name="description" content="Premium Power BI and Data Analyst portfolio website." />
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --panel:#141418;
+      --panel-2:#1a1b21;
+      --text:#f5f5f7;
+      --muted:#b2b4bc;
+      --line:#272933;
+      --accent:#d6b34c;
+      --accent-soft:rgba(214,179,76,.18);
+      --success:#90d39a;
+      --shadow:0 14px 40px rgba(0,0,0,.35);
+      --radius:28px;
+      --radius-sm:18px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(214,179,76,.10), transparent 25%),
+        linear-gradient(180deg, #0a0a0c 0%, #0b0b0d 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+    .section{padding:34px 0}
+    .section-title{
+      font-size:clamp(1.7rem, 2.8vw, 3rem);
+      line-height:1.05;
+      margin:0 0 10px;
+      letter-spacing:-.03em;
+    }
+    .section-subtitle{
+      color:var(--muted);
+      margin:0 0 28px;
+      max-width:760px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--accent);
+      background:var(--accent-soft);
+      border:1px solid rgba(214,179,76,.22);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.92rem;
+      margin-bottom:18px;
+    }
+
+    .nav-shell{
+      position:sticky; top:0; z-index:999;
+      backdrop-filter: blur(16px);
+      background:rgba(11,11,13,.72);
+      border-bottom:1px solid rgba(255,255,255,.04);
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:72px;
+      gap:20px;
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:-.03em;
+      font-size:1.05rem;
+    }
+    .brand span{color:var(--accent)}
+    .nav-links{
+      display:flex; gap:14px; flex-wrap:wrap;
+      color:#d7d9df;
+      font-size:.96rem;
+    }
+    .nav-links a{
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.25s ease;
+    }
+    .nav-links a:hover{background:rgba(255,255,255,.05); color:#fff}
+    .nav-cta{
+      padding:11px 16px;
+      background:var(--accent);
+      color:#131313;
+      border-radius:999px;
+      font-weight:700;
+      box-shadow:var(--shadow);
+    }
+
+    .hero{
+      padding:48px 0 18px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.18fr .82fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.06);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+    }
+    .hero-card{
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+      min-height:410px;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute; inset:auto -50px -80px auto;
+      width:240px; height:240px; border-radius:50%;
+      background:radial-gradient(circle, rgba(214,179,76,.28), transparent 70%);
+      pointer-events:none;
+    }
+    .hero h1{
+      font-size:clamp(2.6rem, 6vw, 5rem);
+      line-height:.95;
+      letter-spacing:-.055em;
+      margin:0 0 16px;
+      max-width:820px;
+    }
+    .hero p{
+      color:var(--muted);
+      font-size:1.06rem;
+      max-width:680px;
+      margin:0 0 28px;
+    }
+    .hero-cta{
+      display:flex; flex-wrap:wrap; gap:14px;
+      margin-bottom:28px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 18px;
+      border-radius:16px;
+      font-weight:700;
+      transition:transform .2s ease, background .25s ease, border-color .25s ease;
+      border:1px solid transparent;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:var(--accent);
+      color:#121212;
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.03);
+      border-color:rgba(255,255,255,.08);
+      color:#fff;
+    }
+    .stats{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+    }
+    .stat{
+      padding:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:18px;
+    }
+    .stat strong{display:block;font-size:1.35rem}
+    .stat span{color:var(--muted);font-size:.94rem}
+
+    .profile-card{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:410px;
+    }
+    .profile-photo{
+      width:108px; height:108px; border-radius:26px;
+      background:linear-gradient(135deg, #ffe79d, #d6b34c 68%, #7f6928);
+      display:grid; place-items:center;
+      color:#111; font-size:2rem; font-weight:800;
+      box-shadow:0 10px 28px rgba(214,179,76,.24);
+      margin-bottom:20px;
+    }
+    .profile-top h3{
+      margin:0;
+      font-size:1.8rem;
+      letter-spacing:-.03em;
+    }
+    .role-pill{
+      display:inline-block;
+      margin-top:12px;
+      padding:12px 16px;
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      color:#dfdfdf;
+      border:1px solid rgba(255,255,255,.05);
+    }
+    .contact-stack{
+      display:grid; gap:12px;
+      margin:20px 0 18px;
+    }
+    .contact-row{
+      display:flex; justify-content:space-between; gap:12px;
+      padding:14px 16px; border-radius:16px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.05);
+      color:#d7d9df;
+      font-size:.96rem;
+    }
+    .socials{display:flex; gap:12px; flex-wrap:wrap}
+    .socials a{
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      color:#f2f2f2;
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .metric{
+      padding:22px;
+      border-radius:22px;
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,.06);
+      box-shadow:var(--shadow);
+    }
+    .metric strong{
+      font-size:2rem; display:block; letter-spacing:-.04em;
+    }
+    .metric span{color:var(--muted)}
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .project-card{
+      padding:18px;
+      display:flex; flex-direction:column;
+      gap:16px;
+      transition:transform .2s ease, border-color .25s ease;
+    }
+    .project-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(214,179,76,.35);
+    }
+    .thumb{
+      aspect-ratio: 16 / 10;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.06);
+      overflow:hidden;
+      background:
+       radial-gradient(circle at top left, rgba(214,179,76,.18), transparent 40%),
+       linear-gradient(135deg, #26262d, #15161c);
+      position:relative;
+      padding:18px;
+    }
+    .thumb-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:10px;
+      height:100%;
+    }
+    .thumb-main,.thumb-side,.thumb-kpi{
+      border-radius:14px;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .thumb-main{padding:14px; display:flex; flex-direction:column; justify-content:flex-end}
+    .thumb-bars{display:flex; align-items:flex-end; gap:8px; height:58px; margin-top:12px}
+    .thumb-bars span{
+      display:block; flex:1;
+      border-radius:10px 10px 4px 4px;
+      background:linear-gradient(180deg, rgba(214,179,76,.95), rgba(214,179,76,.22));
+    }
+    .thumb-side-wrap{
+      display:grid; gap:10px;
+    }
+    .thumb-kpi{
+      display:grid; place-items:center;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .tags{display:flex; flex-wrap:wrap; gap:10px}
+    .tag{
+      padding:9px 12px;
+      border-radius:999px;
+      color:#e8e8ec;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      font-size:.86rem;
+    }
+    .project-card h3{
+      margin:0; font-size:1.35rem; line-height:1.15; letter-spacing:-.03em;
+    }
+    .project-card p{
+      margin:0; color:var(--muted);
+    }
+    .project-buttons{
+      margin-top:auto;
+      display:flex; gap:12px; flex-wrap:wrap;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+    }
+    .panel{padding:28px}
+    .panel h3{
+      margin:0 0 16px;
+      font-size:1.5rem;
+      letter-spacing:-.03em;
+    }
+    .bullets{
+      display:grid; gap:14px;
+      color:#e8e8ea;
+    }
+    .bullet{
+      display:grid;
+      grid-template-columns:18px 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .bullet .dot{
+      width:10px; height:10px; margin-top:8px;
+      border-radius:999px; background:var(--accent);
+      box-shadow:0 0 0 6px rgba(214,179,76,.12);
+    }
+    .bullet p{margin:0; color:var(--muted)}
+    .process-grid{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
+    }
+    .process{
+      padding:18px; border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.05);
+    }
+    .process strong{display:block; margin-bottom:8px}
+    .process span{color:var(--muted); font-size:.95rem}
+
+    .exp-list{
+      display:grid; gap:16px;
+    }
+    .exp-card{padding:22px}
+    .exp-head{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:18px;
+      margin-bottom:10px;
+    }
+    .exp-head h3{margin:0 0 6px; font-size:1.25rem}
+    .exp-head span,.exp-meta{color:var(--muted)}
+    .exp-card ul{
+      margin:12px 0 0 18px;
+      color:#d8dae0;
+    }
+    .exp-card li{margin:10px 0}
+
+    .skill-cloud{
+      display:flex; flex-wrap:wrap; gap:12px;
+    }
+    .skill{
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      color:#e9ebee;
+      font-weight:600;
+    }
+
+    .certs{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .cert{
+      padding:18px;
+    }
+    .cert-shot{
+      border-radius:18px;
+      aspect-ratio: 16 / 10;
+      background:
+        linear-gradient(135deg, rgba(214,179,76,.35), rgba(255,255,255,.04)),
+        linear-gradient(135deg, #2b2c35, #17181f);
+      border:1px solid rgba(255,255,255,.08);
+      margin-bottom:16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .cert-shot::after{
+      content:"Certificate";
+      position:absolute; inset:auto 14px 14px auto;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(11,11,13,.7);
+      border:1px solid rgba(255,255,255,.08);
+      color:#fff;
+      font-size:.85rem;
+    }
+    .cert h3{margin:0 0 6px; font-size:1.15rem}
+    .cert p{margin:0; color:var(--muted)}
+
+    .contact-card{
+      padding:30px;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:center;
+    }
+    .contact-cta h2{
+      margin:0 0 12px;
+      font-size:clamp(2rem, 4vw, 3rem);
+      letter-spacing:-.04em;
+      line-height:1.02;
+    }
+    .contact-cta p{margin:0 0 20px; color:var(--muted); max-width:650px}
+    .contact-box{
+      padding:22px;
+      border-radius:22px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.05);
+    }
+    .contact-box .row{
+      display:flex; justify-content:space-between; gap:12px;
+      padding:12px 0; border-bottom:1px solid rgba(255,255,255,.06);
+      color:#e2e5ea;
+    }
+    .contact-box .row:last-child{border-bottom:none}
+    .muted{color:var(--muted)}
+
+    footer{
+      padding:24px 0 42px;
+      color:#a5a8b0;
+      font-size:.92rem;
+    }
+
+    .fade-up{
+      opacity:0;
+      transform:translateY(24px);
+      transition: .7s ease;
+    }
+    .fade-up.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 980px){
+      .hero-grid, .two-col, .contact-card, .projects, .certs, .metrics{
+        grid-template-columns:1fr;
+      }
+      .hero-card, .profile-card{min-height:auto}
+    }
+    @media (max-width: 760px){
+      nav{min-height:64px}
+      .nav-links{display:none}
+      .hero-card, .profile-card, .panel, .contact-card, .contact-box, .exp-card{padding:22px}
+      .stats{grid-template-columns:1fr}
+      .process-grid{grid-template-columns:1fr}
+      .container{width:min(var(--max), calc(100% - 20px))}
+      .hero{padding-top:24px}
+      .hero h1{font-size:2.5rem}
+      .section{padding:24px 0}
+      .project-buttons .btn{width:100%}
+      .contact-card{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-shell">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top">your<span>portfolio</span></a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#approach">Approach</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="nav-cta" href="#projects">View Work</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-card fade-up">
+          <div class="eyebrow">Power BI Portfolio • Free-host ready • Easy to edit</div>
+          <h1>Your next <span style="color:var(--accent)">Data Analyst</span> with decision-first dashboards.</h1>
+          <p>
+            I build clean, business-focused Power BI dashboards that turn messy operational data into clear KPIs, trends, and actions.
+            This site is designed to help recruiters and hiring managers evaluate my analytical thinking fast.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#projects">See Projects</a>
+            <a class="btn btn-secondary" href="resume.pdf" target="_blank">Download Resume</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>3</strong>
+              <span>Featured case-study projects</span>
+            </div>
+            <div class="stat">
+              <strong>Power BI</strong>
+              <span>Interactive business dashboards</span>
+            </div>
+            <div class="stat">
+              <strong>SQL • Excel • DAX</strong>
+              <span>Core analytics toolkit</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card profile-card fade-up">
+          <div class="profile-top">
+            <div class="profile-photo">YN</div>
+            <h3>Your Name</h3>
+            <div class="role-pill">Data Analyst • Power BI • Business Intelligence</div>
+            <div class="contact-stack">
+              <div class="contact-row"><span>Email</span><span>yourname@email.com</span></div>
+              <div class="contact-row"><span>Location</span><span>Your City, Country</span></div>
+              <div class="contact-row"><span>Focus</span><span>Reporting • KPI Design • Storytelling</span></div>
+            </div>
+          </div>
+          <div class="socials">
+            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/" target="_blank">GitHub</a>
+            <a href="mailto:yourname@email.com">Email Me</a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="container">
+        <div class="metrics fade-up">
+          <div class="metric">
+            <strong>3+</strong>
+            <span>Portfolio dashboards</span>
+          </div>
+          <div class="metric">
+            <strong>12+</strong>
+            <span>Business KPIs designed</span>
+          </div>
+          <div class="metric">
+            <strong>100%</strong>
+            <span>Portfolio-safe datasets</span>
+          </div>
+          <div class="metric">
+            <strong>1</strong>
+            <span>Single-page premium site</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="eyebrow fade-up">Featured Projects</div>
+        <h2 class="section-title fade-up">Power BI projects built like business cases, not assignments.</h2>
+        <p class="section-subtitle fade-up">
+          Each project is framed around a real decision problem, with clear metrics, insights, and a live dashboard link.
+          Replace the placeholder links below with your own Power BI report URLs.
+        </p>
+
+        <div class="projects">
+          <article class="card project-card fade-up">
+            <div class="thumb">
+              <div class="thumb-grid">
+                <div class="thumb-main">
+                  <small class="muted">Sales Performance</small>
+                  <div class="thumb-bars">
+                    <span style="height:28%"></span>
+                    <span style="height:44%"></span>
+                    <span style="height:58%"></span>
+                    <span style="height:72%"></span>
+                    <span style="height:90%"></span>
+                  </div>
+                </div>
+                <div class="thumb-side-wrap">
+                  <div class="thumb-kpi">Revenue ▲ 18%</div>
+                  <div class="thumb-side"></div>
+                </div>
+              </div>
+            </div>
+            <div class="tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">DAX</span>
+              <span class="tag">Excel</span>
+            </div>
+            <h3>Retail Sales Performance Dashboard</h3>
+            <p>Tracked revenue, profit, product mix, and regional performance to identify growth and underperforming segments.</p>
+            <div class="project-buttons">
+              <a class="btn btn-primary" href="#" target="_blank">Case Study</a>
+              <a class="btn btn-secondary" href="#" target="_blank">Live Dashboard</a>
+            </div>
+          </article>
+
+          <article class="card project-card fade-up">
+            <div class="thumb">
+              <div class="thumb-grid">
+                <div class="thumb-main">
+                  <small class="muted">Customer Retention</small>
+                  <div class="thumb-bars">
+                    <span style="height:80%"></span>
+                    <span style="height:68%"></span>
+                    <span style="height:56%"></span>
+                    <span style="height:46%"></span>
+                    <span style="height:38%"></span>
+                  </div>
+                </div>
+                <div class="thumb-side-wrap">
+                  <div class="thumb-kpi">Churn 6.2%</div>
+                  <div class="thumb-side"></div>
+                </div>
+              </div>
+            </div>
+            <div class="tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">SQL</span>
+              <span class="tag">KPI Design</span>
+            </div>
+            <h3>Customer Churn & Retention Analysis</h3>
+            <p>Analyzed retention drivers, high-risk customer segments, and behavioral patterns to support proactive interventions.</p>
+            <div class="project-buttons">
+              <a class="btn btn-primary" href="#" target="_blank">Case Study</a>
+              <a class="btn btn-secondary" href="#" target="_blank">Live Dashboard</a>
+            </div>
+          </article>
+
+          <article class="card project-card fade-up">
+            <div class="thumb">
+              <div class="thumb-grid">
+                <div class="thumb-main">
+                  <small class="muted">Supply Chain</small>
+                  <div class="thumb-bars">
+                    <span style="height:34%"></span>
+                    <span style="height:55%"></span>
+                    <span style="height:42%"></span>
+                    <span style="height:74%"></span>
+                    <span style="height:88%"></span>
+                  </div>
+                </div>
+                <div class="thumb-side-wrap">
+                  <div class="thumb-kpi">OTIF 94%</div>
+                  <div class="thumb-side"></div>
+                </div>
+              </div>
+            </div>
+            <div class="tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Business Ops</span>
+            </div>
+            <h3>Supply Chain KPI Cockpit</h3>
+            <p>Designed an executive dashboard to monitor delivery performance, inventory pressure, and supplier efficiency.</p>
+            <div class="project-buttons">
+              <a class="btn btn-primary" href="#" target="_blank">Case Study</a>
+              <a class="btn btn-secondary" href="#" target="_blank">Live Dashboard</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach" class="section">
+      <div class="container two-col">
+        <div class="card panel fade-up">
+          <div class="eyebrow">About Me</div>
+          <h3>I focus on decisions, not just visuals.</h3>
+          <div class="bullets">
+            <div class="bullet">
+              <div class="dot"></div>
+              <div>
+                <strong>I frame dashboards around business questions.</strong>
+                <p>I start with the decision-maker’s problem, define the KPI logic, and design pages to reduce ambiguity.</p>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="dot"></div>
+              <div>
+                <strong>I make data usable.</strong>
+                <p>From cleaning and modeling to DAX measures and executive summaries, I build dashboards that are easy to trust and act on.</p>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="dot"></div>
+              <div>
+                <strong>I care about storytelling.</strong>
+                <p>Strong analysis is not only accuracy. It is also clarity, prioritization, and making the next action obvious.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel fade-up">
+          <div class="eyebrow">Analytics Process</div>
+          <h3>How I build dashboards</h3>
+          <div class="process-grid">
+            <div class="process">
+              <strong>1. Problem framing</strong>
+              <span>Clarify the business question, audience, and reporting objective.</span>
+            </div>
+            <div class="process">
+              <strong>2. Data prep</strong>
+              <span>Clean source data, shape tables, and standardize definitions.</span>
+            </div>
+            <div class="process">
+              <strong>3. Data model</strong>
+              <span>Create relationships, measures, and reusable KPI logic in Power BI.</span>
+            </div>
+            <div class="process">
+              <strong>4. Executive story</strong>
+              <span>Design layouts that surface trends, exceptions, and decisions fast.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="eyebrow fade-up">Experience</div>
+        <h2 class="section-title fade-up">Evidence of analytical thinking beyond the dashboard.</h2>
+        <div class="exp-list">
+          <article class="card exp-card fade-up">
+            <div class="exp-head">
+              <div>
+                <h3>Data Analyst / Business Analyst</h3>
+                <div class="exp-meta">Your Company Name</div>
+              </div>
+              <span>2024 — Present</span>
+            </div>
+            <ul>
+              <li>Built KPI reporting views that improved visibility into revenue, performance, and operational trends.</li>
+              <li>Translated stakeholder needs into dashboard requirements, metrics, and executive-ready visuals.</li>
+              <li>Used Excel, SQL, and Power BI to automate routine reporting and reduce manual analysis time.</li>
+            </ul>
+          </article>
+
+          <article class="card exp-card fade-up">
+            <div class="exp-head">
+              <div>
+                <h3>Analyst Project / Internship</h3>
+                <div class="exp-meta">Organization or Academic Project</div>
+              </div>
+              <span>2023 — 2024</span>
+            </div>
+            <ul>
+              <li>Worked on business datasets involving sales, retention, or operations and converted them into decision dashboards.</li>
+              <li>Created data models, DAX measures, and filters to improve interpretability for non-technical audiences.</li>
+              <li>Presented insights with a focus on business action, not only descriptive reporting.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container two-col">
+        <div class="card panel fade-up">
+          <div class="eyebrow">Skills & Tools</div>
+          <h3>Core stack</h3>
+          <div class="skill-cloud">
+            <span class="skill">Power BI</span>
+            <span class="skill">DAX</span>
+            <span class="skill">Power Query</span>
+            <span class="skill">SQL</span>
+            <span class="skill">Excel</span>
+            <span class="skill">Data Modeling</span>
+            <span class="skill">Dashboard Design</span>
+            <span class="skill">KPI Frameworks</span>
+            <span class="skill">Business Storytelling</span>
+            <span class="skill">Data Cleaning</span>
+            <span class="skill">Reporting Automation</span>
+            <span class="skill">Presentation Design</span>
+          </div>
+        </div>
+
+        <div class="card panel fade-up" id="certifications">
+          <div class="eyebrow">Certifications</div>
+          <h3>Keep this section compact.</h3>
+          <p class="section-subtitle" style="margin-bottom:18px">
+            Projects should carry the most weight. Add only your strongest credentials here.
+          </p>
+          <div class="certs" style="grid-template-columns:1fr;">
+            <article class="card cert" style="background:rgba(255,255,255,.02)">
+              <div class="cert-shot"></div>
+              <h3>Power BI / Data Analytics Certification</h3>
+              <p>Add certificate name, issuing body, and year.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="card contact-card fade-up">
+          <div class="contact-cta">
+            <div class="eyebrow">Contact</div>
+            <h2>Open to analyst roles where data needs to become action.</h2>
+            <p>
+              This portfolio is designed to be easy to maintain. Update your project titles, links, resume, and contact details in one file,
+              then host it for free on GitHub Pages.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="mailto:yourname@email.com">Email Me</a>
+              <a class="btn btn-secondary" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+              <a class="btn btn-secondary" href="https://github.com/" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <div class="contact-box">
+            <div class="row"><span class="muted">Email</span><span>yourname@email.com</span></div>
+            <div class="row"><span class="muted">Phone</span><span>+91 XXXXX XXXXX</span></div>
+            <div class="row"><span class="muted">LinkedIn</span><span>linkedin.com/in/yourname</span></div>
+            <div class="row"><span class="muted">GitHub</span><span>github.com/yourname</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Built for free hosting on GitHub Pages • Replace placeholder content with your real projects, links, and resume.
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
